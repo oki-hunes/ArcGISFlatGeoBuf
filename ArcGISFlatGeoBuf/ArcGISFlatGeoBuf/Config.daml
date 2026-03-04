@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ArcGIS defaultAssembly="ArcGISFlatGeoBuf.dll"
+        defaultNamespace="ArcGISFlatGeoBuf"
+        xmlns="http://schemas.esri.com/DADF/Registry"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///D:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+
+  <AddInInfo id="{ba62a90c-e908-4d73-a6e5-1fa63aa9ffbf}" version="1.0" desktopVersion="3.2.49743">
+    <Name>ArcGISFlatGeoBuf</Name>   
+    <Description>ArcGISFlatGeoBuf description</Description>
+    <Image>Images\AddinDesktop32.png</Image>
+    <Author>oki</Author>
+    <Company>Acme</Company>
+    <Date>2026/03/04 12:20:05</Date>
+    <Subject>Framework</Subject>
+    <!-- Note subject can be one or more of these topics:
+                    Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
+  </AddInInfo>
+
+  <categories>
+    <updateCategory refID="esri_customItems">
+      <!-- .fgb ファイルを認識してカスタムアイテムとして扱う -->
+      <!-- fileExtension は大文字小文字を区別するため小文字で指定 -->
+      <insertComponent id="ArcGISFlatGeoBuf_FgbCatalogItem"
+                       className="FgbCatalogItem">
+        <content displayName="FlatGeoBuf Feature Class"
+                 fileExtension="fgb"
+                 isContainer="false"
+                 keywords="FlatGeoBuf fgb">
+          <filterFlags>
+            <type id="AddToMap" />
+          </filterFlags>
+        </content>
+      </insertComponent>
+    </updateCategory>
+  </categories>
+
+  <modules>
+    <insertModule id="ArcGISFlatGeoBuf_Module" className="Module1" autoLoad="false" caption="Module1">
+      <!-- uncomment to have the control hosted on a separate tab-->
+      <tabs>
+        <!--<tab id="ArcGISFlatGeoBuf_Tab1" caption="New Tab">
+          <group refID="ArcGISFlatGeoBuf_Group1"/>
+        </tab>-->
+      </tabs>
+              
+      <groups>
+      <!--
+        <group id="ArcGISFlatGeoBuf_Group1" caption="Group 1" appearsOnAddInTab="true">
+        </group>
+        -->
+      </groups>
+      
+      <controls>
+        <!-- add your controls here -->
+      </controls> 
+      
+    </insertModule>
+  </modules>
+</ArcGIS>

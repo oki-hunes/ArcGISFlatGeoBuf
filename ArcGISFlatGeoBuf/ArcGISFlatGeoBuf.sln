@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36717.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISFlatGeoBuf", "ArcGISFlatGeoBuf\ArcGISFlatGeoBuf.csproj", "{A0B072C1-04CA-49F3-AFD8-887A7B34332C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISFlatGeoBufPlugin", "..\ArcGISFlatGeoBufPlugin\ArcGISFlatGeoBufPlugin.csproj", "{7EE77948-A857-4BC4-998A-A31B01D4F115}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Debug|x64.Build.0 = Debug|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Debug|x86.Build.0 = Debug|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Release|x64.ActiveCfg = Release|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Release|x64.Build.0 = Release|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Release|x86.ActiveCfg = Release|Any CPU
+		{A0B072C1-04CA-49F3-AFD8-887A7B34332C}.Release|x86.Build.0 = Release|Any CPU
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Debug|x64.ActiveCfg = Debug|x64
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Debug|x64.Build.0 = Debug|x64
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Debug|x86.Build.0 = Debug|Any CPU
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Release|x64.ActiveCfg = Release|x64
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Release|x64.Build.0 = Release|x64
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Release|x86.ActiveCfg = Release|Any CPU
+		{7EE77948-A857-4BC4-998A-A31B01D4F115}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {295B5F14-8C07-4913-B3C3-7067AB5D17B0}
+	EndGlobalSection
+EndGlobal

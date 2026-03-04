@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <NoWarn>CA1416;1591;CS8632</NoWarn>
+    <!-- Plugin Datasource として展開するための必須設定 -->
+    <PackageType>Plugin</PackageType>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Config.xml" />
+  </ItemGroup>
+
+  <!-- addin プロジェクトの datasource ソースをリンク（ファイル重複なし） -->
+  <ItemGroup>
+    <Compile Include="..\ArcGISFlatGeoBuf\ArcGISFlatGeoBuf\FgbPluginDatasource.cs" Link="FgbPluginDatasource.cs" />
+    <Compile Include="..\ArcGISFlatGeoBuf\ArcGISFlatGeoBuf\FgbPluginTableTemplate.cs" Link="FgbPluginTableTemplate.cs" />
+    <Compile Include="..\ArcGISFlatGeoBuf\ArcGISFlatGeoBuf\FgbPluginCursorTemplate.cs" Link="FgbPluginCursorTemplate.cs" />
+    <Compile Include="..\ArcGISFlatGeoBuf\ArcGISFlatGeoBuf\FgbGeometryConverter.cs" Link="FgbGeometryConverter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ArcGIS.Core">
+      <HintPath>D:\Program Files\ArcGIS\Pro\bin\ArcGIS.Core.dll</HintPath>
+      <Private>False</Private>
+      <CopyLocal>False</CopyLocal>
+    </Reference>
+    <Reference Include="ArcGIS.CoreHost">
+      <HintPath>D:\Program Files\ArcGIS\Pro\bin\ArcGIS.CoreHost.dll</HintPath>
+      <Private>False</Private>
+      <CopyLocal>False</CopyLocal>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FlatGeobuf" Version="3.26.0" />
+  </ItemGroup>
+
+  <Import Project="D:\Program Files\ArcGIS\Pro\bin\Esri.ProApp.SDK.Desktop.targets" Condition="Exists('D:\Program Files\ArcGIS\Pro\bin\Esri.ProApp.SDK.Desktop.targets') AND !Exists('Esri.ArcGISPro.Extensions.targets')" />
+</Project>

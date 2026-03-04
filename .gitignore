@@ -1,0 +1,21 @@
+# サンプルディレクトリを除外
+Plugin/
+
+# VS Code / ツール
+.playwright-mcp/
+.vscode/
+
+# ビルド出力
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# NuGet
+*.nupkg
+packages/
+
+# OS
+Thumbs.db
+.DS_Store

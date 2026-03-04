@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ArcGISFlatGeoBuf": {
+      "commandName": "Executable",
+      "executablePath": "D:\\Program Files\\ArcGIS\\Pro\\bin\\ArcGISPro.exe"
+    }
+  }
+}

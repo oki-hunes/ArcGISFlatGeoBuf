@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ESRI.Configuration xmlns="http://schemas.esri.com/DADF/Registry"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///D:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+  <Name>ArcGISFlatGeoBufPlugin</Name>
+  <AddInID>{d5f8c7b4-3a2e-4f91-8e3d-6b0c1a2d3e4f}</AddInID>
+  <Description>FlatGeoBuf Plugin Datasource for ArcGIS Pro</Description>
+  <Version>1.0</Version>
+  <Author>oki</Author>
+  <Company>Acme</Company>
+  <Date>2026/03/04</Date>
+  <Targets>
+    <Target name="ArcGISPro" version="3.0" />
+  </Targets>
+  <!-- language="CLR:PluginDS" が Plugin Datasource として登録する必須属性 -->
+  <AddIn language="CLR:PluginDS" library="ArcGISFlatGeoBufPlugin.dll" namespace="ArcGISFlatGeoBuf">
+    <ArcGISPro>
+      <PluginDatasources>
+        <PluginDatasource id="ArcGISFlatGeoBuf_FgbPluginDatasource" class="FgbPluginDatasource" />
+      </PluginDatasources>
+    </ArcGISPro>
+  </AddIn>
+</ESRI.Configuration>
