@@ -1,98 +1,102 @@
 # ArcGISFlatGeoBuf
 
-ArcGIS Pro で [FlatGeoBuf](https://flatgeobuf.org/) (.fgb) ファイルを直接読み込むための Plugin Datasource + AddIn です。
+[日本語版 README はこちら](README-ja.md)
 
-## 機能
+A Plugin Datasource + AddIn for reading [FlatGeoBuf](https://flatgeobuf.org/) (.fgb) files directly in ArcGIS Pro.
 
-- **カタログペインでの認識**: `.fgb` ファイルがカタログペインに「FlatGeoBuf Feature Class」として表示されます
-- **マップへの追加**: ドラッグ＆ドロップ または「データの追加」ダイアログからマップにレイヤーとして追加できます
-- **座標参照系の自動認識**: FlatGeoBuf ファイルの CRS 情報（EPSG コード）を読み取り、正しい座標系でレイヤーを作成します
-- **フィーチャの選択**: 属性テーブルの表示、フィーチャの選択が可能です
-- **空間フィルタ**: 表示範囲に基づいた空間フィルタリングに対応しています
+## Features
 
-## 対応環境
+- **Catalog recognition**: `.fgb` files are shown in the Catalog pane as a "FlatGeoBuf Feature Class"
+- **Add to map**: add the file as a layer via drag & drop, or through the "Add Data" dialog
+- **Automatic CRS detection**: reads the CRS information (EPSG code) from the FlatGeoBuf file and creates the layer with the correct spatial reference
+- **Feature selection**: view attribute tables and select features
+- **Spatial filter**: supports spatial filtering based on the current map extent
+- **Localization**: UI strings are available in English and Japanese (`Config.daml` / `Config.ja.daml`, `Strings.resx` / `Strings.ja.resx`)
 
-- ArcGIS Pro 3.2 以降
-- .NET 6.0 (Windows)
+## Supported environment
 
-## プロジェクト構成
+- ArcGIS Pro 3.7 or later
+- .NET 10.0 (Windows)
+
+## Project structure
 
 ```
 ArcGISFlatGeoBuf/
-├── ArcGISFlatGeoBuf/           # AddIn プロジェクト（カタログ表示・D&D）
+├── ArcGISFlatGeoBuf/           # AddIn project (catalog display, drag & drop)
 │   ├── Config.daml
-│   ├── FgbCatalogItem.cs       # カスタムカタログアイテム (CustomItemBase + IMappableItem)
-│   ├── FgbPluginDatasource.cs  # Plugin Datasource 実装
+│   ├── Config.ja.daml
+│   ├── FgbCatalogItem.cs       # Custom catalog item (CustomItemBase + IMappableItem)
+│   ├── FgbPluginDatasource.cs  # Plugin Datasource implementation
 │   ├── FgbPluginTableTemplate.cs
 │   ├── FgbPluginCursorTemplate.cs
-│   ├── FgbGeometryConverter.cs # NTS ↔ ArcGIS ジオメトリ変換
+│   ├── FgbGeometryConverter.cs # NTS <-> ArcGIS geometry conversion
 │   └── Module1.cs
-└── ArcGISFlatGeoBufPlugin/     # Plugin プロジェクト（Plugin Datasource 登録）
+└── ArcGISFlatGeoBufPlugin/     # Plugin project (Plugin Datasource registration)
     ├── Config.xml
     └── ArcGISFlatGeoBufPlugin.csproj
 ```
 
-### 2プロジェクト構成の理由
+### Why two projects?
 
-ArcGIS Pro SDK では Plugin Datasource と AddIn は**別々のパッケージ**として登録する必要があります。
+The ArcGIS Pro SDK requires the Plugin Datasource and the AddIn to be registered as **separate packages**.
 
-| プロジェクト | PackageType | 登録ファイル | 役割 |
+| Project | PackageType | Registration file | Role |
 |---|---|---|---|
-| `ArcGISFlatGeoBufPlugin` | `Plugin` | `.esriPlugin` | FgbPluginDatasource を Plugin として登録 |
-| `ArcGISFlatGeoBuf` | `AddIn` | `.esriAddinX` | FgbCatalogItem でカタログ表示・マップ追加 |
+| `ArcGISFlatGeoBufPlugin` | `Plugin` | `.esriPlugin` | Registers `FgbPluginDatasource` as a Plugin |
+| `ArcGISFlatGeoBuf` | `AddIn` | `.esriAddinX` | `FgbCatalogItem` for catalog display and adding to map |
 
-## ビルド・インストール方法
+## Build & install
 
-### 前提条件
+### Prerequisites
 
-- Visual Studio 2022 以降
-- ArcGIS Pro SDK for .NET 3.2 以降（`D:\Program Files\ArcGIS\Pro\bin\` にインストール済み）
+- Visual Studio 2026 or later
+- ArcGIS Pro SDK for .NET 3.7 or later (installed under `D:\Program Files\ArcGIS\Pro\bin\`)
 
-> **注意**: `ArcGISFlatGeoBufPlugin.csproj` および `ArcGISFlatGeoBuf.csproj` 内の ArcGIS Pro のパスを環境に応じて変更してください。
+> **Note**: update the ArcGIS Pro paths in `ArcGISFlatGeoBufPlugin.csproj` and `ArcGISFlatGeoBuf.csproj` to match your environment.
 
-### ビルド手順
+### Build steps
 
-1. **Plugin プロジェクトをビルド**（Plugin Datasource の登録）
+1. **Build the Plugin project** (registers the Plugin Datasource)
 
    ```
    MSBuild ArcGISFlatGeoBufPlugin\ArcGISFlatGeoBufPlugin.csproj /p:Configuration=Debug
    ```
 
-   ビルド後、`%USERPROFILE%\Documents\ArcGIS\AddIns\ArcGISPro3.0\` に `.esriPlugin` が自動展開されます。
+   After building, the `.esriPlugin` is automatically deployed to `%USERPROFILE%\Documents\ArcGIS\AddIns\ArcGISPro3.0\`.
 
-2. **AddIn プロジェクトをビルド**（カタログ＆マップ追加機能）
+2. **Build the AddIn project** (catalog and add-to-map features)
 
    ```
    MSBuild ArcGISFlatGeoBuf\ArcGISFlatGeoBuf\ArcGISFlatGeoBuf.csproj /p:Configuration=Debug
    ```
 
-   ビルド後、`%USERPROFILE%\Documents\ArcGIS\AddIns\ArcGISPro\` に `.esriAddinX` が自動展開されます。
+   After building, the `.esriAddinX` is automatically deployed to `%USERPROFILE%\Documents\ArcGIS\AddIns\ArcGISPro\`.
 
-3. **ArcGIS Pro を起動**
+3. **Start ArcGIS Pro**
 
-   両ファイルが読み込まれ、`.fgb` ファイルが利用可能になります。
+   Both files are loaded and `.fgb` files become available.
 
-### NuGet パッケージ
+### NuGet packages
 
 - [FlatGeobuf](https://www.nuget.org/packages/FlatGeobuf/) 3.26.0
 
-## 使い方
+## Usage
 
-1. ArcGIS Pro のカタログペインで `.fgb` ファイルが存在するフォルダに移動します
-2. `.fgb` ファイルが「FlatGeoBuf Feature Class」アイコンで表示されます
-3. ファイルをマップにドラッグ＆ドロップ、または右クリック →「マップに追加」でレイヤーとして表示できます
+1. In the ArcGIS Pro Catalog pane, navigate to the folder containing your `.fgb` file
+2. The `.fgb` file is shown with a "FlatGeoBuf Feature Class" icon
+3. Drag & drop the file onto the map, or right-click it and choose "Add To Current Map" to display it as a layer
 
-## 制限事項
+## Limitations
 
-- **読み取り専用**: ArcGIS Pro の編集ツール（頂点編集など）は Plugin Datasource の制限により非対応です。編集が必要な場合は QGIS などの外部ツールをご利用ください
-- フォルダモード（フォルダパスを指定した場合）ではフォルダ内の全 `.fgb` ファイルを読み込みます
+- **Read-only**: ArcGIS Pro editing tools (such as vertex editing) are not supported due to Plugin Datasource limitations. Use an external tool such as QGIS if editing is required
+- In folder mode (when a folder path is specified), all `.fgb` files in the folder are loaded
 
-## 依存ライブラリ
+## Dependencies
 
-- [FlatGeobuf (.NET)](https://github.com/flatgeobuf/flatgeobuf) - FlatGeoBuf 形式の読み書き
-- [NetTopologySuite](https://github.com/NetTopologySuite/NetTopologySuite) - ジオメトリ処理
+- [FlatGeobuf (.NET)](https://github.com/flatgeobuf/flatgeobuf) - reading/writing the FlatGeoBuf format
+- [NetTopologySuite](https://github.com/NetTopologySuite/NetTopologySuite) - geometry processing
 - ArcGIS Pro SDK for .NET
 
-## ライセンス
+## License
 
 MIT License

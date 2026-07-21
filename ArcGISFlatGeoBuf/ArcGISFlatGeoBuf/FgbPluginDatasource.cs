@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using ArcGIS.Core.Data;
 using ArcGIS.Core.Data.PluginDatastore;
+using ArcGISFlatGeoBuf.Properties;
 
 namespace ArcGISFlatGeoBuf
 {
@@ -51,7 +52,7 @@ namespace ArcGISFlatGeoBuf
         {
             if (_tables.TryGetValue(name, out var tbl))
                 return tbl;
-            throw new InvalidOperationException($"テーブル '{name}' は存在しません。");
+            throw new InvalidOperationException(Strings.ErrorTableNotFound(name));
         }
 
         public override IReadOnlyList<string> GetTableNames() =>
@@ -71,12 +72,12 @@ namespace ArcGISFlatGeoBuf
         }
 
         public override string GetDatasourceDescription(bool inPluralForm) =>
-            inPluralForm ? "FlatGeoBuf Files" : "FlatGeoBuf File";
+            inPluralForm ? Strings.DatasourceDescriptionPlural : Strings.DatasourceDescriptionSingular;
 
         public override string GetDatasetDescription(DatasetType datasetType) =>
             datasetType == DatasetType.FeatureClass
-                ? "FlatGeoBuf Feature Class"
-                : "FlatGeoBuf Table";
+                ? Strings.DatasetDescriptionFeatureClass
+                : Strings.DatasetDescriptionTable;
 
         // ----------------------------------------------------------------
         // 書き込み用公開 API
@@ -103,7 +104,7 @@ namespace ArcGISFlatGeoBuf
             ArcGIS.Core.Geometry.Geometry? shape)
         {
             if (!_tables.TryGetValue(tableName, out var tbl))
-                throw new InvalidOperationException($"テーブル '{tableName}' は存在しません。先に CreateTable を呼び出してください。");
+                throw new InvalidOperationException(Strings.ErrorTableNotFoundCreateFirst(tableName));
             return tbl.AddFeature(attributes, shape);
         }
 
